@@ -1,0 +1,19 @@
+services:
+  sqlserverdev:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: sqlserverdev
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_PID: "Developer"
+      ACCEPT_EULA: "Y"
+      ACCEPT_EULA_ML: "Y"
+      MSSQL_SA_PASSWORD: "1qaz2wsx@@"
+      MSSQL_AGENT_ENABLED: "True"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+
+volumes:
+  sqlserver_data:
+    driver: local
